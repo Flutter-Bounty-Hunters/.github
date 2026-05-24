@@ -1,0 +1,28 @@
+name: Daily Issue Report
+
+on:
+  schedule:
+    - cron: '0 5 * * *'  # 5 AM UTC daily
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  generate-and-send-report:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 'stable'
+      - name: Install dependencies
+        run: dart pub get
+      - name: Generate and send daily issue report
+        run: dart run bin/daily_org_report.dart
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SMTP_HOST: smtp.gmail.com
+          SMTP_PORT: 587
+          SENDER_EMAIL: ${{ secrets.ISSUE_REPORT_SENDER_EMAIL }}
+          SENDER_PASSWORD: ${{ secrets.ISSUE_REPORT_SENDER_PASSWORD }}
+          RECIPIENT_EMAIL: superdeclarative@gmail.com

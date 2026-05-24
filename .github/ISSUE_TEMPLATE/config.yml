@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a bug
+    url: https://github.com/flutter-bounty-hunters/.github/issues/new?assignees=&labels=bug&template=bug_report.md
+    about: Create a bug report for the organization automation repo.
+  - name: Request a feature
+    url: https://github.com/flutter-bounty-hunters/.github/issues/new?assignees=&labels=enhancement&template=feature_request.md
+    about: Suggest a new workflow or automation improvement.
