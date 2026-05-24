@@ -151,13 +151,14 @@ Future<void> _sendEmail({
   required String recipientEmail,
   required String reportHtml,
 }) async {
+  final useSsl = smtpPort == 465;
   final smtpServer = SmtpServer(
     smtpHost,
     port: smtpPort,
-    ssl: true,
-    allowInsecure: false,
     username: senderEmail,
     password: senderPassword,
+    ssl: useSsl,
+    ignoreBadCertificate: false,
   );
 
   final message = Message()
