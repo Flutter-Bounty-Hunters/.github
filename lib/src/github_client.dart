@@ -9,7 +9,7 @@ class GithubClient {
       : _client = GitHub(auth: Authentication.withToken(token ?? Platform.environment['GITHUB_TOKEN'] ?? ''));
 
   Future<List<Repository>> listOrganizationRepositories(String org) async {
-    return _client.repositories.listOrganizations(org).toList();
+    return _client.repositories.listOrganizationRepositories(org).toList();
   }
 
   Future<void> close() async {

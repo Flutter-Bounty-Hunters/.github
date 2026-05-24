@@ -41,9 +41,9 @@ class IssueReportCollector {
 
   Future<List<IssueStats>> collectStats(DateTime since) async {
     final repos = await github.repositories
-        .listOrganizations(org)
-        .where((repo) => !repo.isPrivate!)
-        .toList();
+      .listOrganizationRepositories(org)
+      .where((repo) => !repo.isPrivate!)
+      .toList();
 
     final stats = <IssueStats>[];
 
